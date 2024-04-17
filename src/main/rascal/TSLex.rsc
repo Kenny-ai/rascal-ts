@@ -16,27 +16,43 @@ lexical Integer = [0-9] !<< [0-9]+ !>> [0-9];
 // A String is characters between double quotes
 lexical String = [\"] String_Char* [\"];
 lexical String_Char  = ![\\ \" \n] | "\\" [\\ \"];
-lexical Let = "let";
-lexical Const = "const";
-lexical Var = "var";
 lexical SemiColon = ";";
+lexical FuncArrow = "=\>";
 lexical Boolean = "true" | "false";
+lexical LogicalSep = "||" | "&&";
 
 lexical NewLine = "\r\n" | "\r\t";
+lexical Type 
+            = "number"
+            | "string" 
+            | "boolean"
+            | TypeKeyword
+            ;
 
 keyword Keyword 
                 = "true" 
                 | "false" 
-                | "null" 
                 | "class"
-                | TypeKeyword
+                | "return"
+                | "if"
+                | "else"
+                | "while"
+                | "for"
+                | "in"
+                | "of"
                 | VarKeyword
+                | TypeKeyword
+                | LoopBlockKeyword
                 ;
 
-keyword VarKeyword = Let | Const | Var;
+keyword VarKeyword = "let" | "const" | "var";
 
 keyword TypeKeyword 
-                    = "int" 
-                    | "string" 
-                    | "boolean" 
+                    = 
+                    | "void"
+                    | "null" 
+                    | "undefined" 
                     ;
+
+
+keyword LoopBlockKeyword = "continue" | "break";

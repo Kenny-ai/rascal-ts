@@ -1,1 +1,94 @@
-var string name = Blair; 
+const hobbies = ["Following women", "Coding", true, false, 10];
+var name: string = Blair;
+const hobbies = ["Following women", "Coding", true, false, 10];
+let calc = 2 + 3 * 17 / (2 * 3);
+const hobbies = age(2, 3);
+calc = 2 + 3 * 17 / true;
+calc = true / true;
+const age: number = 23;
+const age = 23;
+
+let hobbies = () => {
+  const age = 23;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  var name: string = Blair;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  let calc = 2 + 3 * 17 / (2 * 3);
+  const hobbies = age(2, 3);
+  calc = 2 + 3 * 17 / true;
+  calc = true / true;
+  const age: number = 23;
+  const age = 23;
+  return age;
+};
+
+let hobbies: (name: number) => boolean = (name: number) => {
+  const age = 23;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  var name: string = Blair;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  let calc = 2 + 3 * 17 / (2 * 3);
+  const hobbies = age(2, 3);
+  calc = 2 + 3 * 17 / true;
+  calc = true / true;
+  const age: number = 23;
+  const age = 23;
+  return age;
+};
+
+const func: () => string;
+
+if (2 > 3) {
+  const age = 23;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  var name: string = Blair;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  let calc = 2 + 3 * 17 / (2 * 3);
+  const hobbies = age(2, 3);
+  calc = 2 + 3 * 17 / true;
+  calc = true / true;
+  const age: number = 23;
+  const age = 23;
+} else if (3 < 2) {
+  const age = 23;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  var name: string = Blair;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  let calc = 2 + 3 * 17 / (2 * 3);
+  const hobbies = age(2, 3);
+  calc = 2 + 3 * 17 / true;
+  calc = true / true;
+  const age: number = 23;
+  const age = 23;
+}
+else {
+  const age = 23;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  var name: string = Blair;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  let calc = 2 + 3 * 17 / (2 * 3);
+  const hobbies = age(2, 3);
+  calc = 2 + 3 * 17 / true;
+  calc = true / true;
+  const age: number = 23;
+  let string = "void";
+};
+
+while (2 < 1 && 2 > 1) {
+  const age = 23;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  var name: string = Blair;
+  const hobbies = ["Following women", "Coding", true, false, 10];
+  let calc = 2 + 3 * 17 / (2 * 3);
+  const hobbies = age(2, 3);
+  calc = 2 + 3 * 17 / true;
+  calc = true / true;
+  const age: number = 23;
+  let string = "void";
+  break;
+  continue;
+  break;
+  continue;
+}
+for (let i = 0, a = func(3); i == 3 && a == 3; a = 0, i = 4) { }
+for (let i = 0; i <= 3; i = i + 4) { }

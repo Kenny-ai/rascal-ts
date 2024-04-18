@@ -38,7 +38,7 @@ let hobbies: (name: number) => boolean = (name: number) => {
 
 const func: () => string;
 
-if (2 > 3) {
+if (2 > 3 || 2 > 3 && 2 < 3 ) {
   const age = 23;
   const hobbies = ["Following women", "Coding", true, false, 10];
   var name: string = Blair;

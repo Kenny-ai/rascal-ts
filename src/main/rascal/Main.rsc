@@ -1,6 +1,6 @@
 module Main
 
-// import IO;
+import IO;
 
 import TSSyntax;
 import TSLex;
@@ -11,10 +11,11 @@ loc src = |project://rascal-ts/src/resources/test.tap|;
 
 start[Program] pTree = parse(#start[Program], src);
 
-// Stmt absTree = implode(#Stmt, pTree);
+Program absTree = implode(#Program, pTree);
 
-start[Program] main() {
+Program main() {
     // println("argument: <testArgument>");
-    return pTree;
-    // return absTree;
+    // return pTree;
+    println(absTree);
+    return absTree;
 }

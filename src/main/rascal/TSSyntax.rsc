@@ -4,7 +4,8 @@ extend TSLex;
 
 start syntax Program = prog: Stmt*;
 
-syntax Stmt = varstatement: VariableStmt | FuncStmt | ExpSep | IfStmt | LoopStmt;
+// syntax Stmt = varstatement: VariableStmt | FuncStmt | ExpSep | IfStmt | LoopStmt;
+syntax Stmt = varstatement: VariableStmt | exSep: ExpSep | fnStmt: FuncStmt | ifStmt: IfStmt | loopStmt: LoopStmt;
 
 syntax ExpSep = expSep: Exp SemiColon+;
 
@@ -44,7 +45,7 @@ syntax FuncStmt = fnStatement: VarKeyword? {FuncDecl ","}+  SemiColon+;
 
 syntax FuncDecl = fnDeclaration: Id FuncTypeOrInit+;
 
-syntax FuncTypeOrInit = fnTypeOrInit: FuncTypeDef | FuncInitialize;
+syntax FuncTypeOrInit = funcTypeDef: FuncTypeDef | funcInit: FuncInitialize;
 
 syntax FuncTypeDef = fnTypeDef: ":" "(" FuncArgDef? ")" FuncArrow Type;
 
@@ -52,13 +53,13 @@ syntax FuncInitialize = fnInit: "=" "(" FuncArgDef? ")" FuncArrow "{" FuncBlock*
 
 syntax FuncArgDef = fnArgDef: Id ":" Type;
 
-syntax FuncBlock = fnBlock: Block | ReturnStmt;
+syntax FuncBlock = fnBlock: Block | retStmt: ReturnStmt;
 
 syntax Block = block: Stmt;
 
 syntax ReturnStmt = rtnStmt: "return" Exp SemiColon+;
 
-syntax IfStmt = ifStmt: "if" "(" Condition ")" "{" Block* "}" ElseIfStmt* ElseStmt? SemiColon+;
+syntax IfStmt = ifStatement: "if" "(" Condition ")" "{" Block* "}" ElseIfStmt* ElseStmt? SemiColon+;
 
 syntax ElseIfStmt = elseIfStmt: "else if" "(" Condition ")" "{" Block* "}";
 
@@ -77,11 +78,11 @@ syntax UnitCondition =
         | strictNotEqual: Exp "!==" Exp;
 
 
-syntax LoopStmt = loopStmt: WhileStmt | ForStmt;
+syntax LoopStmt = whileStatement: WhileStmt | forStatement: ForStmt;
 
 syntax WhileStmt = whileStmt: "while" "(" Condition ")" "{" LoopBlock* "}";
 
-syntax LoopBlock = loopBlock: Block | LoopBlockKeyword SemiColon+;
+syntax LoopBlock = blk: Block | lbScolon: LoopBlockKeyword SemiColon+;
 
 syntax ForStmt = forStmt: "for" "(" ForCondition ")" "{" LoopBlock* "}";
 

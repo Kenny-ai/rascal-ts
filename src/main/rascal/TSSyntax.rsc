@@ -5,7 +5,12 @@ extend TSLex;
 start syntax Program = prog: Stmt*;
 
 // syntax Stmt = varstatement: VariableStmt | FuncStmt | ExpSep | IfStmt | LoopStmt;
-syntax Stmt = varstatement: VariableStmt | exSep: ExpSep | fnStmt: FuncStmt | ifStmt: IfStmt | loopStmt: LoopStmt;
+syntax Stmt 
+        = varstatement: VariableStmt 
+        | exSep: ExpSep 
+        | fnStmt: FuncStmt 
+        | ifStmt: IfStmt 
+        | loopStmt: LoopStmt;
 
 syntax ExpSep = expSep: Exp SemiColon+;
 

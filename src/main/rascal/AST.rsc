@@ -4,7 +4,11 @@ import TSSyntax;
 
 data Program = prog(list[Stmt] stmt);
 
-data Stmt = varstatement(VariableStmt varStmt) | exSep(ExpSep es) | fnStmt(FuncStmt fs) | ifStmt(IfStmt ifs) | loopStmt(LoopStmt ls);
+data Stmt = varstatement(VariableStmt varStmt) 
+          | exSep(ExpSep es) 
+          | fnStmt(FuncStmt fs) 
+          | ifStmt(IfStmt ifs) 
+          | loopStmt(LoopStmt ls);
 
 data ExpSep = expSep(Exp exp, list[str] scolon);
 

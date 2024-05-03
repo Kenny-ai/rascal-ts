@@ -19,7 +19,6 @@ lexical String_Char  = ![\\ \" \n] | "\\" [\\ \"];
 lexical SemiColon = ";";
 lexical FuncArrow = "=\>";
 lexical Boolean = "true" | "false";
-lexical LogicalSep = "||" | "&&";
 
 lexical NewLine = "\r\n" | "\r\t";
 lexical Type 
@@ -34,12 +33,12 @@ keyword Keyword
                 | "false" 
                 | "class"
                 | "return"
-                | "if"
-                | "else"
                 | "while"
                 | "for"
                 | "in"
                 | "of"
+                | "if"
+                | "else"
                 | VarKeyword
                 | TypeKeyword
                 | LoopBlockKeyword
@@ -53,6 +52,5 @@ keyword TypeKeyword
                     | "null" 
                     | "undefined" 
                     ;
-
 
 keyword LoopBlockKeyword = "continue" | "break";

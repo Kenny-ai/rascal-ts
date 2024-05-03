@@ -4,7 +4,6 @@ extend TSLex;
 
 start syntax Program = prog: Stmt*;
 
-// syntax Stmt = varstatement: VariableStmt | FuncStmt | ExpSep | IfStmt | LoopStmt;
 syntax Stmt 
         = varstatement: VariableStmt 
         | exSep: ExpSep 
@@ -16,7 +15,7 @@ syntax ExpSep = expSep: Exp SemiColon+;
 
 syntax VariableStmt = variableStatement: VarKeyword? {VariableDecl ","}+  SemiColon+;
 
-syntax VariableDecl = variableDeclaration: Id TypeDef? Initialize?;
+syntax VariableDecl = variableDeclaration: Id TypeDef? Initialize;
 
 syntax TypeDef = typeDef: ":" Type;
 
@@ -44,7 +43,21 @@ syntax Exp
         > left (mult: Exp "*" Exp | div: Exp "/" Exp)
 
         > left (add: Exp "+" Exp | sub: Exp "-" Exp)
-        ;
+
+        > non-assoc (
+                greater: Exp "\>" Exp 
+                | greaterEqual: Exp "\>=" Exp 
+                | less: Exp "\<" Exp 
+                | lessEqual: Exp "\<=" Exp 
+        )
+        > right (
+                 equal: Exp "==" Exp
+                | notEqual:  Exp "!=" Exp
+                | strictEqual: Exp "===" Exp
+                | strictNotEqual: Exp "!==" Exp
+        )
+        > left (and: Exp "&&" Exp)
+        > left (or: Exp "||" Exp);
 
 syntax FuncStmt = fnStatement: VarKeyword? {FuncDecl ","}+  SemiColon+;
 
@@ -52,43 +65,30 @@ syntax FuncDecl = fnDeclaration: Id FuncTypeOrInit+;
 
 syntax FuncTypeOrInit = funcTypeDef: FuncTypeDef | funcInit: FuncInitialize;
 
-syntax FuncTypeDef = fnTypeDef: ":" "(" FuncArgDef? ")" FuncArrow Type;
+syntax FuncTypeDef = fnTypeDef: ":" "(" {FuncArgDef ","}* ")" FuncArrow Type;
 
-syntax FuncInitialize = fnInit: "=" "(" FuncArgDef? ")" FuncArrow "{" FuncBlock* "}";
+syntax FuncInitialize = fnInit: "=" "(" {FuncArgDef ","}* ")" FuncArrow "{" FuncBlock* "}";
 
-syntax FuncArgDef = fnArgDef: Id ":" Type;
+syntax FuncArgDef = fnArgDef: Id TypeDef?;
 
-syntax FuncBlock = fnBlock: Block | retStmt: ReturnStmt;
-
-syntax Block = block: Stmt;
+syntax FuncBlock = fnBlock: Stmt | retStmt: ReturnStmt;
 
 syntax ReturnStmt = rtnStmt: "return" Exp SemiColon+;
 
-syntax IfStmt = ifStatement: "if" "(" Condition ")" "{" Block* "}" ElseIfStmt* ElseStmt? SemiColon+;
+syntax IfStmt = ifStatement: "if" "(" Exp ")" "{" Stmt* "}" ElseIfStmt* ElseStmt? SemiColon+;
 
-syntax ElseIfStmt = elseIfStmt: "else if" "(" Condition ")" "{" Block* "}";
+syntax ElseIfStmt = elseIfStmt: "else if" "(" Exp ")" "{" Stmt* "}";
 
-syntax ElseStmt = elseStmt: "else" "{" Block* "}";
-
-syntax Condition = condition: {UnitCondition LogicalSep}*;
-
-syntax UnitCondition = 
-        greater: Exp "\>" Exp 
-        | greaterEqual: Exp "\>=" Exp 
-        | less: Exp "\<" Exp 
-        | lessEqual: Exp "\<=" Exp 
-        | equal: Exp "==" Exp
-        | notEqual:  Exp "!=" Exp
-        | strictEqual: Exp "===" Exp
-        | strictNotEqual: Exp "!==" Exp;
-
+syntax ElseStmt = elseStmt: "else" "{" Stmt* "}";
 
 syntax LoopStmt = whileStatement: WhileStmt | forStatement: ForStmt;
 
-syntax WhileStmt = whileStmt: "while" "(" Condition ")" "{" LoopBlock* "}";
+syntax WhileStmt = whileStmt: "while" "(" Exp ")" "{" LoopBlock* "}";
 
-syntax LoopBlock = blk: Block | lbScolon: LoopBlockKeyword SemiColon+;
+syntax LoopBlock = blk: Stmt | breakCont: BrkCont;
+
+syntax BrkCont = brkCont: LoopBlockKeyword SemiColon+;
 
 syntax ForStmt = forStmt: "for" "(" ForCondition ")" "{" LoopBlock* "}";
 
-syntax ForCondition = forCond: VariableStmt Condition ";" {VariableDecl ","}+;
+syntax ForCondition = forCond: VariableStmt Exp ";" {VariableDecl ","}+;
